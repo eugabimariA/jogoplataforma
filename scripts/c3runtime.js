@@ -4566,15 +4566,21 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Keyboard,
 		C3.Plugins.Text,
 		C3.Plugins.Sprite.Cnds.OnCollision,
-		C3.Plugins.Sprite.Acts.SetPos,
+		C3.Plugins.Sprite.Cnds.CompareY,
+		C3.Plugins.Sprite.Exps.Y,
+		C3.Behaviors.Platform.Acts.SetVectorY,
+		C3.Plugins.Sprite.Acts.SetAnim,
+		C3.Plugins.System.Acts.Wait,
+		C3.Plugins.Sprite.Acts.Destroy,
+		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.System.Acts.SubVar,
-		C3.Plugins.Text.Acts.SetText,
+		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.Keyboard.Cnds.OnKey,
 		C3.Plugins.Sprite.Acts.SetMirrored,
 		C3.Plugins.System.Acts.GoToLayout,
 		C3.Behaviors.Platform.Cnds.IsMoving,
-		C3.Plugins.Sprite.Acts.Destroy,
-		C3.Plugins.System.Acts.AddVar
+		C3.Plugins.System.Acts.AddVar,
+		C3.Plugins.Text.Acts.SetText
 	];
 };
 self.C3_JsPropNameTable = [
@@ -4710,13 +4716,16 @@ function or(l, r)
 }
 
 self.C3_ExpressionFuncs = [
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() - 30);
+		},
+		() => -400,
+		() => "Morte",
+		() => 0.3,
+		() => 1,
 		() => 152,
 		() => 102,
-		() => 1,
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => and("vidas", v0.GetValue());
-		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => and("pontos", v0.GetValue());
